@@ -11,12 +11,28 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+    signingConfigs {
+        debug {
+            //storeFile file('C:/Users/bhavad/.android/debug.keystore')
+            storeFile file('/home/techseria/.android/debug.keystore')
+        }
+        //need FCM json file from client, google map key https://console.developers.google.com/apis/credentials?project=swaat-e9931&authuser=0
+        config {
+            keyAlias 'swipetask'
+            keyPassword 'password'
+            storeFile file('/Data/Bhavesh/KeyStoreWithLiveApplication/SwipeTask/swipetask.jks')
+            //storeFile file('/Data/Bhavesh/KeyStoreWithLiveApplication/SWAAT/swaat.jks')
+            storePassword 'password'
+        }
+    }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
         }
     }
+
 }
 
 dependencies {
@@ -29,4 +45,6 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
     /*implementation project(':samplelib')*/
+
+    implementation 'com.github.bhaveshvadalia:git_sample:1.0.1'
 }
